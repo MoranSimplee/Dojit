@@ -64,3 +64,4 @@ gem 'faker'
 gem 'devise'
 gem "figaro"
 gem 'pusher'
+gem 'pundit'
