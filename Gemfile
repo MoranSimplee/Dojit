@@ -65,3 +65,4 @@ gem 'devise'
 gem "figaro"
 gem 'pusher'
 gem 'pundit'
+gem 'redcarpet'
