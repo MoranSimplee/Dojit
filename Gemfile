@@ -66,3 +66,6 @@ gem "figaro"
 gem 'pusher'
 gem 'pundit'
 gem 'redcarpet'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
