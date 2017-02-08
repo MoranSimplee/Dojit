@@ -19,3 +19,5 @@
 /config/application.yml
 # Ignore Byebug command history file.
 .byebug_history
+# Carrierwave image
+public/uploads
