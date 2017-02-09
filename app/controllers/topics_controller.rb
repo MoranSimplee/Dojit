@@ -1,6 +1,13 @@
+require 'paginate'
+
 class TopicsController < ApplicationController
+
+  include Paginate
+
   def index
-    @topics = Topic.paginate(page: params[:page], per_page: 10)
+    @topics = paginate(Topic.all, 10, params[:page])
+    @num_of_pages = @topics.count/10 + 1 
+    @curr_page = params[:page] || 1
     authorize @topics
   end
 
@@ -11,7 +18,9 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
+    @num_of_pages = @topic.posts.count/10 + 1
+    @curr_page = params[:page] || 1
+    @posts = paginate(@topic.posts, 10, params[:page])
     authorize @topic
   end
 
@@ -19,7 +28,6 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     authorize @topic
   end
-
 
   def create
     @topic = Topic.new(topic_params)

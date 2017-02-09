@@ -1,0 +1,11 @@
+<%if @curr_page.to_i > 1 %>
+  <%=link_to "<--perviuos page", item_path.call(:page => @curr_page.to_i-1)%>
+<%end%>
+
+<%(1..@num_of_pages).to_a.each do |p|%>
+  <%= link_to p, item_path.call(:page => p) %>
+<%end%>
+
+<%if @curr_page.to_i < @num_of_pages.to_i %>
+  <%=link_to "next page-->", item_path.call(:page => @curr_page.to_i+1)%>
+<%end%>
