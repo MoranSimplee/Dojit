@@ -46,6 +46,7 @@ posts = Post.all
     #user:users.sample,
     post: posts.sample,
     body: Faker::Lorem.paragraph
+    user: users.sample
   )
 end
 
