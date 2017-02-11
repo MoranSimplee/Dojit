@@ -11,10 +11,8 @@
     </small>
     <p><%= markdown @post.body %></p></br>
     <h4>Comments:</h4>
-    <% @comments.each do |c| %>
-      <%=c.body%></br>
-    <%end%>
-    <%= link_to "New Comment", new_topic_post_comment_path(topic_id: @topic.id, post_id: @post.id), class: 'btn btn-success' %>
+    <%= render @post.comments %>
+    <%= render partial: 'comments/form', locals: { topic: @topic, post: @post } %>
   </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
