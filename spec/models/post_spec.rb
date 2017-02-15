@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-include TestFactories
-
 describe Post do
   describe "vote methods" do
 
     before do
-      @post = associated_post
+      @user1 = create(:user)
+      @post = create(:post, user: @user1)
       3.times { @post.votes.create(value: 1, post:@post, user: @post.user) }
       2.times { @post.votes.create(value: -1, post:@post, user: @post.user) }
     end
@@ -31,7 +30,8 @@ describe Post do
 
     describe '#create_vote' do
       it "generates an up-vote when explicitly called" do
-        post = associated_post
+        @user1 = create(:user)
+        post = create(:post, user: @user1)
         expect( post.up_votes ).to eq(0)
         post.create_vote
         expect( post.up_votes ).to eq(1)

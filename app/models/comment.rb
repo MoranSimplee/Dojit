@@ -8,8 +8,6 @@ class Comment < ApplicationRecord
 
   after_create :send_favorite_emails
 
-  private
-
   def send_favorite_emails
     post.favorites.each do |favorite|
       if should_receive_update_for?(favorite)
@@ -17,6 +15,8 @@ class Comment < ApplicationRecord
       end  
     end
   end 
+  
+  private
 
   def should_receive_update_for?(favorite)
     user_id != favorite.user_id && favorite.user.email_favorites?

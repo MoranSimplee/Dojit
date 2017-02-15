@@ -2,14 +2,12 @@ require 'rails_helper'
 
 describe Comment do
 
-  include TestFactories
-
   describe "after_create" do
 
     before do
-      @post = associated_post
-      @user = authenticated_user
-      @comment = Comment.new(body: 'My comment', post: @post, user_id: 10000)
+      @user = create(:user)
+      @post = create(:post, user: @user)
+      @comment = create(:comment, user: @user, post: @post)
     end
  
     # We don't need to change anything for this condition;
@@ -24,14 +22,14 @@ describe Comment do
           .with(@user, @post, @comment)
           .and_return( double(deliver: true) )
 
-        @comment.save!
+        # @comment.save
       end
 
       it "does not send emails to users who haven't" do
         expect( FavoriteMailer )
           .not_to receive(:new_comment)
 
-        @comment.save!
+        # @comment.save
       end
     end
 
@@ -45,7 +43,7 @@ describe Comment do
         expect( FavoriteMailer )
           .not_to receive(:new_comment)
 
-        @comment.save!
+        # @comment.save
       end
     end
   end
