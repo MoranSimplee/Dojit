@@ -13,6 +13,8 @@ class Post < ApplicationRecord
   validates :body, length: { minimum: 20 }, presence: true
   validates :topic, presence: true
   validates :user, presence: true  
+  
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
 
   def up_votes
     votes.where(value: 1).count
