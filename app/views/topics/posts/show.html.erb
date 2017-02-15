@@ -12,8 +12,12 @@
     </small>
     <p><%= markdown @post.body %></p></br>
     <h4>Comments:</h4>
-    <%= render partial: 'comments/comment', collection: @post.comments %>
-    <%= render partial: 'comments/form', locals: { topic: @topic, post: @post } %>
+    <div class='js-comments'>
+      <%= render partial: 'comments/comment', collection: @post.comments %>
+    </div>
+    <div class='new-comment'>
+      <%= render partial: 'comments/form', locals: { topic: @topic, post: @post } %>
+    </div>
   </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
