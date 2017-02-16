@@ -5,8 +5,8 @@
   <div class="media-body">
     <small>
       <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
-      <% if policy(comment).destroy? %>
-      | <%= link_to "Delete", [comment.post, comment], method: :delete, remote: true %>
+      <% if policy(comment).destroy?%>
+      | <%= link_to "Delete", [comment.post, comment], remote: true, method: :delete%>
       <% end %>
     </small>
     <p><%= comment.body %></p>
